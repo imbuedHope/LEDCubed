@@ -1,0 +1,11 @@
+# Sample Equation file
+# ========
+# There must be three equations for R, G, and B seperately
+# All equations must be in terms of X, Y, Z, and T
+# If a variable is missing it will be ignored
+#
+# X represents the horizontal axis
+# Z represents the second horizontal axis
+# Y represents the vertical axis
+#
+# Any text, in a given line, following a `#` will be ignored
