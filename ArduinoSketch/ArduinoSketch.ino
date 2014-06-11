@@ -16,10 +16,6 @@ int const PIN_R = 3;
 int const PIN_G = 5;
 int const PIN_B = 6;
 
-int xOut [SIDE_LENGTH];
-int yOut [SIDE_LENGTH];
-int zOut [SIDE_LENGTH];
-
 void setup() {
   for(int i = 2; i < 14; i++)
     pinMode(i, OUTPUT);
