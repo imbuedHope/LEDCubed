@@ -1,5 +1,6 @@
-# Sample Equation file
+# Sample Equation Type Animation file
 # ========
+#
 # There must be three equations for R, G, and B seperately
 # All equations must be in terms of X, Y, Z, and T
 # If a variable is missing it will be ignored
@@ -7,5 +8,29 @@
 # X represents the horizontal axis
 # Z represents the second horizontal axis
 # Y represents the vertical axis
+# T represents time, this will be used to create the animation
+# 
+# It is presumed that the animation is true within the range
+# that has been specified
+#
+# If the equation values are out of the scope of 0 to 255 then
+# the value will be rounded to 0 or 255
+#
+# You can also set a time range by specificying it like this
+# 
+# T[0:100]
+# 
+# At the end of a range the sequence will backtrack by default
+# You can also change that by specifying it in the file as follows
+#
+# TimeFlow=backtrack  #This will make it cycle in reverse and then forward
+# TimeFlow=loop       #This will make it cycle in the specified range over and over
 #
 # Any text, in a given line, following a `#` will be ignored
+
+T[0:10000]
+TimeFlow = backtrack
+
+R = ((X^2 + Y * Z)/T)*255
+G = ((Y^2 + X * Z)/T)*255
+B = ((Z^2 + Y * X)/T)*255
