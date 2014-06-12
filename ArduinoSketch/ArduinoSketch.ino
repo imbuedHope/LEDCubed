@@ -1,4 +1,5 @@
 int const SIDE_LENGTH = 8;
+int const BIT_LENGTH = 3; // = log(SIDE_LENGTH)/log(2)
 
 int const PIN_X0 = 2;
 int const PIN_X1 = 4;
@@ -28,40 +29,25 @@ void loop() {
 //x = row; y = layer; z = row select
 void set(int x, int y, int z, int r, int g, int b) {
   clearAllOutputs();  
-  switch(x) {
-    case 0:
-      digitalWrite(PIN_X0, HIGH);
-      break;
-    case 1:
-      digitalWrite(PIN_X1, HIGH);
-      break;
-    case 2:
-      digitalWrite(PIN_X2, HIGH);
-      break;
+  
+  boolean val[3][BIT_LENGTH];
+  
+  for(int j = 0; j < BIT_LENGTH; j++) {
+    int tmp = x%2;
+    val[1][j] = (tmp==1);
+    x /= 2;
   }
   
-  switch(y) {
-    case 0:
-      digitalWrite(PIN_Y0, HIGH);
-      break;
-    case 1:
-      digitalWrite(PIN_Y1, HIGH);
-      break;
-    case 2:
-      digitalWrite(PIN_Y2, HIGH);
-      break;
+  for(int j = 0; j < BIT_LENGTH; j++) {
+    int tmp = y%2;
+    val[1][j] = (tmp==1);
+    y /= 2;
   }
   
-  switch(z) {
-    case 0:
-      digitalWrite(PIN_Z0, HIGH);
-      break;
-    case 1:
-      digitalWrite(PIN_Z1, HIGH);
-      break;
-    case 2:
-      digitalWrite(PIN_Z2, HIGH);
-      break;
+  for(int j = 0; j < BIT_LENGTH; j++) {
+    int tmp = z%2;
+    val[1][j] = (tmp==1);
+    z /= 2;
   }
   
   analogWrite(PIN_R, r);
