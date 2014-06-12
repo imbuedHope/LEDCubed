@@ -1,6 +1,10 @@
 int const SIDE_LENGTH = 8;
 int const BIT_LENGTH = 3; // = log(SIDE_LENGTH)/log(2)
 
+int const PIN_AR [3][BIT_LENGTH] = {{  2,  4,  7},
+                                    {  8,  9, 10},
+                                    { 11, 12, 13}};
+/*
 int const PIN_X0 = 2;
 int const PIN_X1 = 4;
 int const PIN_X2 = 7;
@@ -12,6 +16,7 @@ int const PIN_Y2 = 10;
 int const PIN_Z0 = 11;
 int const PIN_Z1 = 12;
 int const PIN_Z2 = 13;
+*/
 
 int const PIN_R = 3;
 int const PIN_G = 5;
@@ -34,7 +39,7 @@ void set(int x, int y, int z, int r, int g, int b) {
   
   for(int j = 0; j < BIT_LENGTH; j++) {
     int tmp = x%2;
-    val[1][j] = (tmp==1);
+    val[0][j] = (tmp==1);
     x /= 2;
   }
   
@@ -46,8 +51,15 @@ void set(int x, int y, int z, int r, int g, int b) {
   
   for(int j = 0; j < BIT_LENGTH; j++) {
     int tmp = z%2;
-    val[1][j] = (tmp==1);
+    val[2][j] = (tmp==1);
     z /= 2;
+  }
+  
+  for(int i = 0; i < BIT_LENGTH; i++) {
+    for(int j = 0; j < BIT_LENGTH; j++) {
+      if(val[i][j])
+        digitalWrite(PIN_AR[i][j], HIGH);
+    }
   }
   
   analogWrite(PIN_R, r);
