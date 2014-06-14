@@ -10,6 +10,7 @@ public class GUIFrame extends JPanel {
 	
 	public GUIFrame(int cubeSideX, int cubeSideY, int cubeSideZ, int frameGenerationRate) {
 		this.setPreferredSize(new Dimension(XLEN, YLEN));
+		//TODO: Desgin a GUI to control the system in a comfortable way
 	}
 
 	private static final long serialVersionUID = -2167912679009145686L;
