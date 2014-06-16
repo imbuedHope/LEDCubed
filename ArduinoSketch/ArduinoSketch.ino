@@ -25,6 +25,7 @@ int const PIN_B = 6;
 void setup() {
   for(int i = 2; i < 14; i++)
     pinMode(i, OUTPUT);
+  Serial.begin(9600);               // Initializing the serial port
 }
 
 void loop() {
