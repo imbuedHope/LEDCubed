@@ -41,7 +41,7 @@ void loop() {
   delay(10);                              // to reset 100 times in a second!
                                           // can change this based upon the length of the code!
       
- resetFunc();                             // Reset Called
+  resetFunc();                            // Reset Called
   
   Serial.println("Couldn't reset!!!");    // For debugging
 }
