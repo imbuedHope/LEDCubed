@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 import javax.swing.JFrame;
+import javax.swing.UIManager;
 
 import com.github.ledcubed.gui.GUIFrame;
 
@@ -65,6 +66,14 @@ public class Main {
 			e.printStackTrace(System.err);
 		}
 		
+		//Set to OS based L&F
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+
 		//Set GUI to launch later and quit
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
