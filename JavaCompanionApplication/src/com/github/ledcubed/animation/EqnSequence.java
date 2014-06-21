@@ -65,14 +65,9 @@ public class EqnSequence extends Sequence {
 			d = 0;
 		}
 	}
-
-	@Override
-	public Color getNext() {
-		return null;
-	}
-	
-	//TODO: Change to private once done with testing
+		
 	@SuppressWarnings("unchecked")
+	@Override
 	public Color evaluate(double x, double y, double z, double t) {
 		double val[] = { x, y, z, t};
 		String chars[] = { "X", "Y", "Z", "T"};
@@ -105,16 +100,19 @@ public class EqnSequence extends Sequence {
 			}
 		}
 		
-		//TODO: Remove print statement once no longer needed
-		System.out.println(R_ + "\n" + G_ + "\n" + B_);
+		int r = (int)evaluate(R_);
+		int g = (int)evaluate(G_);
+		int b = (int)evaluate(B_);
 		
-		double r = evaluate(R_);
-		double g = evaluate(G_);
-		double b = evaluate(B_);
+		r = (r > 255)? 255: r;
+		g = (g > 255)? 255: g;
+		b = (b > 255)? 255: b;
 		
-		System.out.println(r + "\n" + g + "\n" + b);
+		r = (r < 0)? 0: r;
+		g = (g < 0)? 0: g;
+		b = (b < 0)? 0: b;
 		
-		return null;
+		return new Color((int)r, (int)g, (int)b);
 	}
 	
 	private double evaluate(List<String> list) {
@@ -199,12 +197,14 @@ public class EqnSequence extends Sequence {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		System.out.println("Hello world!");
 		String[] test = { 	"R = 4 * 4 + y + t + X",
 							"G = 2 * (23 + 13)",
 							"B = 23 * 123 +23",};
 		
-		new EqnSequence(test).evaluate(0, 1, 2, 3);
+		EqnSequence eqn = new EqnSequence(test);
+		System.out.println("\n\n\n"+System.currentTimeMillis());
+		System.out.println(eqn.evaluate(0, 1, 2, 3));
+		System.out.println(System.currentTimeMillis());
 		
 	}
 }

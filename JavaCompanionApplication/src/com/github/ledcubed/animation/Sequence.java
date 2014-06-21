@@ -11,9 +11,8 @@ public class Sequence {
 		//TODO: Take input file and convert to Frames
 		//Don't bother with this, get EqnSequence to work first
 	}
-	
-	public Color getNext() {
-		//TODO: Return the next output to the Arduino
+
+	public Color evaluate(double x, double y, double z, double t) {
 		return null;
 	}
 }
