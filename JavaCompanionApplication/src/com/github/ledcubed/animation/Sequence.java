@@ -15,4 +15,14 @@ public class Sequence {
 	public Color evaluate(double x, double y, double z, double t) {
 		return null;
 	}
+
+	public int getMinTime() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public int getMaxTime() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

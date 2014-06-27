@@ -20,7 +20,7 @@ public class GUIFrame extends JPanel implements ActionListener {
 	static final Dimension TEXT_AREA = new Dimension(500, 300);
 	static final Dimension BUTTONS = new Dimension(40, 40);
 	
-	private PrintStream stream;
+	public PrintStream stream;
 	private JTextArea console;
 	
 	private JButton play;
@@ -105,6 +105,14 @@ public class GUIFrame extends JPanel implements ActionListener {
 		case "play":
 			console.append(">Ctrl\t: Requesting display to play\n");
 			serial.play();
+			play.setToolTipText("pause");
+			play.setActionCommand("pause");
+			break;
+		case "pause":
+			console.append(">Ctrl\t: Requesting display to pause\n");
+			serial.pause();
+			play.setToolTipText("play");
+			play.setActionCommand("play");
 			break;
 		case "nextAnim":
 			console.append(">Ctrl\t: Requesting display to skip forward\n");

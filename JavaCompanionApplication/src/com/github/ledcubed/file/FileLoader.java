@@ -1,4 +1,4 @@
-package com.github.ledcubed;
+package com.github.ledcubed.file;
 
 public class FileLoader {
 	//TODO: Code manager for loading animation files...

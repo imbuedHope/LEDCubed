@@ -36,5 +36,10 @@ public class CommManager {
 		// TODO Auto-generated method stub
 		
 	}
+
+	public void pause() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

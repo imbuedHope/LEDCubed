@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.UIManager;
 
 import com.github.ledcubed.gui.GUIFrame;
+import com.github.ledcubed.gui.GUIMenu;
 
 /**
  * Launch class
@@ -82,9 +83,12 @@ public class Main {
 				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				frame.setLocationByPlatform(true);
 				frame.setTitle("LED Cube Manager");
-
-				frame.add(new GUIFrame(CubeSideX, CubeSideY, CubeSideZ, FrameGenerationRate));
-
+				
+				GUIFrame panel = new GUIFrame(CubeSideX, CubeSideY, CubeSideZ, FrameGenerationRate);
+				
+				frame.add(panel);
+				frame.setJMenuBar(new GUIMenu(panel.stream));
+				
 				frame.setResizable(false);
 				frame.setVisible(true);
 				frame.pack();
