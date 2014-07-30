@@ -36,14 +36,7 @@ void(* resetFunc) (void) = 0;             //declare reset function @ address 0
 void loop() {
   
   
-  Serial.println('r');                    // "r" indicates reset
-  
-  delay(10);                              // to reset 100 times in a second!
-                                          // can change this based upon the length of the code!
-      
-  resetFunc();                            // Reset Called
-  
-  Serial.println("Couldn't reset!!!");    // For debugging
+ 
 }
 
 //x = row; y = layer; z = row select
