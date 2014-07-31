@@ -1,3 +1,6 @@
+#include <SD.h>
+
+
 int const SIDE_LENGTH = 8;
 int const BIT_LENGTH = 3; // = log(SIDE_LENGTH)/log(2)
 
@@ -22,15 +25,40 @@ int const PIN_R = 3;
 int const PIN_G = 5;
 int const PIN_B = 6;
 
+
+File myFile;
+
+
 void setup() {
   for(int i = 2; i < 14; i++)
     pinMode(i, OUTPUT);
   
-  Serial.begin(9600);                     // Initializing the serial port
+  Serial.begin(9600);                      // Initializing the serial port
 }
 
 
-void(* resetFunc) (void) = 0;             //declare reset function @ address 0
+pinMode(10, OUTPUT);                       // for the sd library to work properly
+
+if (!SD.begin(4)) {
+    Serial.println("Failed to read SD-card!");
+    return;
+  }
+
+string path = "A/0.txt" ;                  // Defines the path for the file to access in the SD
+
+myFile = SD.open(path);   // Open the 0.txt in Animation A
+
+if(myFile){
+    Serial.println("Reading file: %s", path);
+    
+    while (myFile.available()) {          // Reading from the file until there's nothing left in it
+       Serial.write(myFile.read());
+    }
+  myFile.close();
+} 
+else{
+  Serial.println("Error opening file: %s", path);
+}
 
 
 void loop() {
