@@ -25,6 +25,7 @@ int const PIN_R = 3;
 int const PIN_G = 5;
 int const PIN_B = 6;
 
+//////////////////////////////////////////////
 
 File myFile;
 
@@ -44,22 +45,35 @@ if (!SD.begin(4)) {
     return;
   }
 
-string path = "A/0.txt" ;                  // Defines the path for the file to access in the SD
 
-myFile = SD.open(path);   // Open the 0.txt in Animation A
+int i=0;                                   // To be used for file name
 
-if(myFile){
-    Serial.println("Reading file: %s", path);
+
+void ReadFile(){
+
+ while(1){
+  string path = "A/%d.txt", i ;                  // Defines the path for the file to access in the SD
+
+  myFile = SD.open(path);   // Open the i.txt in Animation A
+
+  if(myFile){
+      Serial.println("Reading file: %s", path);
     
-    while (myFile.available()) {          // Reading from the file until there's nothing left in it
-       Serial.write(myFile.read());
-    }
-  myFile.close();
-} 
-else{
-  Serial.println("Error opening file: %s", path);
+      while (myFile.available()) {          // Reading from the file until there's nothing left in it
+         Serial.write(myFile.read());
+      }
+    myFile.close();
+    
+    i=i+1;                                  // increment i for next file
+    
+   } 
+  else{
+    Serial.println("Error opening file: %s", path);
+    break;                                 // Get out of the loop! We are done!
+  }
+ }
 }
-
+///////////////////////////////////////////////
 
 void loop() {
   
