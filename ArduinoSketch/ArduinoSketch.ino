@@ -1,12 +1,18 @@
 #include <SD.h>
 
 
-int const SIDE_LENGTH = 8;
-int const BIT_LENGTH = 3; // = log(SIDE_LENGTH)/log(2)
+//int const SIDE_LENGTH = 8;
+//int const BIT_LENGTH = 3; // = log(SIDE_LENGTH)/log(2)
 
-int const PIN_AR [3][BIT_LENGTH] = {{  2,  4,  7},
-                                    {  8,  9, 10},
-                                    { 11, 12, 13}};
+//int const PIN_AR [3][BIT_LENGTH] = {{  2,  4,  7}, {  8,  9, 10}, { 11, 12, 13}};
+
+/*variables for the makeArray function*/
+int pin_array [6][2000]; // each member of "x" is the (x, y, z) coordinate. I put in 2000 LEDS just incase
+int fps=0; 
+int rerun=0;
+int num_frames=0; //
+int num_pixels=0; //number of the current led info passing in                                    
+                                    
 /*
 int const PIN_X0 = 2;
 int const PIN_X1 = 4;
@@ -32,7 +38,8 @@ File myFile;
 
 void setup() {
   for(int i = 2; i < 14; i++)
-    pinMode(i, OUTPUT);
+    pinMode(i, OUTPUT)
+  
   
   Serial.begin(9600);                      // Initializing the serial port
 }
