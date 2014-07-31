@@ -38,19 +38,13 @@ File myFile;
 
 void setup() {
   for(int i = 2; i < 14; i++)
-    pinMode(i, OUTPUT)
+    pinMode(i, OUTPUT);
   
   
   Serial.begin(9600);                      // Initializing the serial port
 }
 
 
-pinMode(10, OUTPUT);                       // for the sd library to work properly
-
-if (!SD.begin(4)) {
-    Serial.println("Failed to read SD-card!");
-    return;
-  }
 
 
 int i=0;                                   // To be used for file name
@@ -59,12 +53,15 @@ int i=0;                                   // To be used for file name
 void ReadFile(){
 
  while(1){
-  string path = "A/%d.txt", i ;                  // Defines the path for the file to access in the SD
-
-  myFile = SD.open(path);   // Open the i.txt in Animation A
+  String path = "A/%d.txt", i ;                  // Defines the path for the file to access in the SD
+  
+  char filename[path.length()+1];
+  
+  path.toCharArray(filename, sizeof(filename));
+  myFile = SD.open(filename);   // Open the i.txt in Animation A
 
   if(myFile){
-      Serial.println("Reading file: %s", path);
+      Serial.println("Reading file:"+ path);
     
       while (myFile.available()) {          // Reading from the file until there's nothing left in it
          Serial.write(myFile.read());
@@ -75,7 +72,7 @@ void ReadFile(){
     
    } 
   else{
-    Serial.println("Error opening file: %s", path);
+    Serial.println("Error opening file:"+ path);
     break;                                 // Get out of the loop! We are done!
   }
  }
@@ -83,6 +80,17 @@ void ReadFile(){
 ///////////////////////////////////////////////
 
 void loop() {
+  
+  //////
+  
+  if (!SD.begin(4)) {
+    Serial.println("Failed to read SD-card!");
+    return;
+  }
+
+   ReadFile();
+  
+  /////
   
 makeArray();  
 looper(); 
