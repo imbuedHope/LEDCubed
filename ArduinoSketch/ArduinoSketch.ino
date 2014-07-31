@@ -84,8 +84,31 @@ void ReadFile(){
 
 void loop() {
   
-  
+makeArray();  
 looper(); 
+}
+
+void makeArray()
+{
+  fps = (myFile.read()-60)*10 + (myFile.read()-60); //reads in two bits for the fps value
+  myFile.read(); //I think I need this for a new line 
+  
+  rerun = myFile.read()-60; //reads in 0 or 1 for rerun option
+  myFile.read(); //I think I need this for a new line
+  
+  frames = (myFile.read()-60)*10 + (myFile.read()-60); // reads in two bits for total number of frames
+  myFile.read(); //I think I need this for a new line
+
+/* putting into an array */  
+  while(myFile.available()){ 
+    //keep on reading until end of file
+    myFile.read(); //read in new line
+    for(int i = 0; i < 6; i++){
+      pin_array[i][num_pixels] = (myFile.read()-60)*100 + (myFile.read()-60)*10 + (myFile.read()-60); //converting 3 digits of number   
+      myFile.read(); //read in space
+    }
+    num_pixels++; //increment number of "pixels"
+  }
 }
 
 
@@ -109,6 +132,9 @@ void looper() {
    }
    
 }
+
+
+
 
 //x = row; y = layer; z = row select
 void set(int x, int y, int z, int r, int g, int b) {
