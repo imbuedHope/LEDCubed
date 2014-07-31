@@ -85,7 +85,29 @@ void ReadFile(){
 void loop() {
   
   
- 
+looper(); 
+}
+
+
+void looper() {
+   int timestamp = millis();                              // time reference for the start of function
+   int time_passed = 0 ;                                  // time passed so far, note in milliseconds
+   float time_render = fps / 60;                          // time to render each frame
+   int x,y,z,r,g,b;                                       // variables and stuff
+   while (  time_passed*1000 < time_render ){             // while loop to keep track of time
+       int i = 0;                                         // index 
+       for(i;i < num_pixels; i++) {                       // for loop of fun
+           x = pin_array[i][0];                            // read array and update x,y,z values
+           y = pin_array[i][1];                            
+           z = pin_array[i][2];
+           r = pin_array[i][3];
+           g = pin_array[i][4];
+           b = pin_array[i][5];
+           set(x,y,z,r,g,b);                              // call output function to display value
+       }
+       time_passed = millis() - timestamp;                // update time passed the 
+   }
+   
 }
 
 //x = row; y = layer; z = row select
