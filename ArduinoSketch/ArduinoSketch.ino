@@ -128,7 +128,7 @@ void looper() {
    while (  time_passed*1000 < time_render ){             // while loop to keep track of time
        int i = 0;                                         // index 
        for(i;i < num_pixels; i++) {                       // for loop of fun
-           x = pin_array[i][0];                            // read array and update x,y,z values
+           x = pin_array[i][0];                           // read array and update x,y,z values
            y = pin_array[i][1];                            
            z = pin_array[i][2];
            r = pin_array[i][3];
